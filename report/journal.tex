@@ -1,0 +1,188 @@
+\documentclass[journal]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\usepackage{tabu}
+\usepackage{upgreek}
+\usepackage{amsthm}
+\usepackage{commath}
+\usepackage{graphics}
+\usepackage[linesnumbered,commentsnumbered,boxed]{algorithm2e} 
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{bm}
+%\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,latexsym}
+%\numberwithin{equation}{section}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{epstopdf}
+\usepackage[inline]{enumitem}
+\usepackage{hhline}
+\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+\usepackage[caption=false]{subfig}
+\renewcommand{\baselinestretch}{1.00}
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+\usepackage[pdftex]{graphicx}
+% declare the path(s) where your graphic files are
+\graphicspath{{../images/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+% or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+% will default to the driver specified in the system graphics.cfg if no
+% driver is specified.
+\usepackage[dvips]{graphicx}
+% declare the path(s) where your graphic files are
+\graphicspath{{../eps/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+\DeclareGraphicsExtensions{.eps}
+\fi
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Concurrent Deep Distributed Anomaly Detection Model for Embedded 
+Systems}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Mellitus~O.~Ezeme,~\IEEEmembership{Member,~IEEE,}
+	Qusay~Mahmoud,~\IEEEmembership{Senior~Member,~IEEE,}
+	and~Akramul~Azim,~\IEEEmembership{Senior~Member,~IEEE}% <-this % stops a 
+	%%space
+\thanks{Mellitus O. Ezeme, Qusay Mahmoud and Akramul Azim are with the 
+Department	of 
+Electrical, Computer and Software 
+	Engineering, University of Ontario Institute of Technology, Oshawa ON, L1H 
+	7K4 
+	Canada.\protect\\
+	% note need leading \protect in front of \\ to get a newline within \thanks 
+	%as
+	% \\ is fragile and will error, could use \hfil\break instead.
+	E-mail: \{mellitus.ezeme,qusay.mahmoud,akramul.azim\}@uoit.net
+	%\IEEEcompsocthanksitem J. Doe and J. Doe are with Anonymous University.
+}% <-this % stops an unwanted space
+%\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}
+}
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE 
+%Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+System logs and traces contain information that reflects the state of the 
+System and provides a comprehensive insight into the workings of the embedded 
+system. Moreover, logging of traces as a tool for monitoring the operation of 
+an embedded system is recommended by most safety standard organizations. 
+However, because the data can be overwhelmingly huge within a short space of 
+time, the use of models that do not rely only on known signatures for online 
+anomaly detection becomes difficult to use due to the challenge of processing 
+such an enormous amount of data at runtime. Hence, the resort to the use of 
+signature-based tools by most practitioners as an embedded system is inherently 
+limited in memory and computation power.\par
+In this paper, we introduce a distributed anomaly detection model that smartly 
+identifies the requirements of an application and uses the information to 
+intelligently provide simultaneous anomaly detection for multiple profiles by 
+leveraging the cloud computing platform as an additional computational resource 
+when needed. Intelligent decisions about \emph{which} part of the application 
+runs \emph{where} is a function of both the embedded process 
+\emph{requirements} and resource \emph{availablity} in the embedded platform. 
+Our anomaly detection model is a multi-stage process which makes use of 
+transfer learning by using the knowledge gained from the unsupervised deep 
+learning part to the supervised clustering portion of the model. Long 
+Short-Term Memory (LSTM) networks fitted with a recursive context input and a 
+context-aware attention mechanism provide a learning process that traverses 
+horizontally (present and past inputs) and vertically (present inputs). We test 
+the performance of the anomaly detection model with publicly available datasets 
+of multiple processes running concurrently and our model demonstrates both 
+effectiveness and robustness in detecting the anomalous sequences while 
+satisfying the timing and other constraints.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Anomaly detection, embedded system, distributed system, deep learning
+\end{IEEEkeywords}
+
+
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+\input{body}
+\bibliographystyle{IEEETran}
+\bibliography{bibfile}
+\end{document}
+
+

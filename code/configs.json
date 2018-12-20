@@ -1,0 +1,128 @@
+{
+    "xy-train": {
+        "fifo": "E:/data/xy-db-fifo-train.h5",
+        "hilrf": "E:/data/xy-db-hilrf-train.h5",
+        "full": "E:/data/xy-db-full-train.h5",
+        "sporadic": "E:/data/xy-db-sporadic-train.h5"
+    },
+    "xy-clean": {
+        "fifo": "E:/data/xy-db-fifo-clean.h5",
+        "hilrf": "E:/data/xy-db-hilrf-clean.h5",
+        "full": "E:/data/xy-db-full-clean.h5",
+        "sporadic": "E:/data/xy-db-sporadic-clean.h5"
+    },
+    "xy-anomaly": {
+        "fifo": "E:/data/xy-db-fifo-anomaly.h5",
+        "hilrf": "E:/data/xy-db-hilrf-anomaly.h5",
+        "full": "E:/data/xy-db-full-anomaly.h5",
+        "sporadic": "E:/data/xy-db-sporadic-anomaly.h5"
+    },
+    "batch-size": 400,
+    "train-test-split": 0.6,
+    "encoder-name-db": "encoder-input",
+    "decoder-input-name-db": "decoder-input",
+    "decoder-target-name-db": "decoder-target",
+    "num-units": 200,
+    "x-window": 20,
+    "y-window": 5,
+    "model": {
+        "batch-size": 1,
+        "epochs": 300,
+        "metrics": [
+            "accuracy"
+        ],
+        "loss_function": "categorical_crossentropy",
+        "optimizer_function": [
+            "Nadam",
+            "adam",
+            "rmsprop"
+        ]
+    },
+    "model-weight-a": {
+        "fifo": "E:/data/y10-window-weights/fifo-model-weights-a.h5",
+        "hilrf": "E:/data/y10-window-weights/hilrf-model-weights-a.h5",
+        "sporadic": "E:/data/y10-window-weights/sporadic-model-weights-a.h5",
+        "full": "E:/data/y10-window-weights/full-model-weights-a.h5"
+    },
+    "model-weight": {
+        "fifo": "E:/data/y10-window-weights/fifo-model-weights.h5",
+        "hilrf": "E:/data/y10-window-weights/hilrf-model-weights.h5",
+        "sporadic": "E:/data/y10-window-weights/sporadic-model-weights.h5",
+        "full": "E:/data/y10-window-weights/full-model-weights.h5"
+    },
+    "eval-error": {
+        "fifo": "fifo-error-eval.json",
+        "hilrf": "hilrf-error-eval.json",
+        "sporadic": "sporadic-error-eval.json",
+        "full": "full-error-eval.json"
+    },
+    "eval-pdf-norm": {
+        "fifo": "fifo-eval-pdf.json",
+        "hilrf": "hilrf-eval-pdf.json",
+        "sporadic": "sporadic-eval-pdf.json",
+        "full": "full-eval-pdf.json"
+    },
+    "eval-pdf-norm-anom": {
+        "fifo": "fifo-eval-pdf-an.json",
+        "hilrf": "hilrf-eval-pdf-an.json",
+        "sporadic": "sporadic-eval-pdf-an.json",
+        "full": "full-eval-pdf-an.json"
+    },
+    "pred-pdf-norm": {
+        "fifo": "fifo-pred-pdfs.json",
+        "hilrf": "hilrf-pred-pdfs.json",
+        "sporadic": "sporadic-pred-pdfs.json",
+        "full": "full-pred-pdfs.json"
+    },
+    "pred-pdf-anom": {
+        "fifo": "fifo-pred-pdfs-an.json",
+        "hilrf": "hilrf-pred-pdfs-an.json",
+        "sporadic": "sporadic-pred-pdfs-an.json",
+        "full": "full-pred-pdfs-an.json"
+    },
+    "fifo": {
+        "train": "C:/Users/melli/dataset/fifo-ls/train/**",
+        "clean": "C:/Users/melli/dataset/fifo-ls/clean/**",
+        "anomalous": "C:/Users/melli/dataset/fifo-ls/anomalous/**"
+    },
+    "full": {
+        "train": "C:/Users/melli/dataset/full-while/train/**",
+        "clean": "C:/Users/melli/dataset/full-while/clean/**",
+        "anomalous": "C:/Users/melli/dataset/full-while/anomalous/**"
+    },
+    "sporadic": {
+        "train": "C:/Users/melli/dataset/sporadic/train/**",
+        "clean": "C:/Users/melli/dataset/sporadic/clean/**",
+        "anomalous": "C:/Users/melli/dataset/sporadic/anomalous/**"
+    },
+    "hilrf": {
+        "train": "C:/Users/melli/dataset/hilRF-InFin/train/**",
+        "clean": "C:/Users/melli/dataset/hilRF-InFin/clean/**",
+        "anomalous": "C:/Users/melli/dataset/hilRF-InFin/anomalous/**"
+    },
+    "data": {
+        "fifo": "C:/Users/melli/dataset/fifo-ls/**",
+        "full": "C:/Users/melli/dataset/full-while/**",
+        "hilrf": "C:/Users/melli/dataset/hilRF-InFin/**",
+        "sporadic": "C:/Users/melli/dataset/sporadic/**"
+    },
+    "embed-weights": {
+        "fifo": "fifo-embed_weight",
+        "sporadic": "sporadic-embed_weight",
+        "hilrf": "hilrf-embed_weight",
+        "full": "full-embed_weight"
+    },
+    "vocabs": {
+        "fifo": "fifo-vocabs.json",
+        "sporadic": "sporadic-vocabs.json",
+        "hilrf": "hilrf-vocabs.json",
+        "full": "full-vocabs.json"
+    },
+    "embed-model": {
+        "epochs": 1000,
+        "context_window": 5,
+        "workers": 4,
+        "embed_size": 100,
+        "min_count": 10
+    }
+}

@@ -1,0 +1,105 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\usepackage{booktabs} % For formal tables
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\usepackage{tabu}
+\usepackage{upgreek}
+\usepackage{amsthm}
+\usepackage[inline]{enumitem}
+\usepackage{xcolor}
+\usepackage{commath}
+\usepackage{graphics}
+\usepackage[linesnumbered,commentsnumbered,boxed]{algorithm2e} 
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{amsmath,amssymb,latexsym}
+\numberwithin{equation}{section}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{epstopdf}
+\usepackage{hhline}
+\usepackage[T1]{fontenc}
+\usepackage[caption=false]{subfig}
+\renewcommand{\baselinestretch}{1.03}
+\ifCLASSINFOpdf
+   \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+   \graphicspath{{../images/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+   \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+   \graphicspath{{../images/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+   \DeclareGraphicsExtensions{.eps}
+\fi
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Detecting Anomalies in System Logs' Stream using Deep 
+Recurrent Neural Network}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+
+\author{\IEEEauthorblockN{Mellitus O. Ezeme,
+Qusay H. Mahmoud and
+Akramul Azim}
+\IEEEauthorblockA{Department of Electrical, Computer and Software Engineering\\
+University of Ontario Institute of Technology\\
+Oshawa, Ontario, Canada\\ 
+Email: \{mellitus.ezeme, qusay.mahmoud, akramul.azim\}@uoit.net}}
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+System logs and traces contain information that reflects the state of the 
+system and serves as a rich source of knowledge for system monitoring from the 
+application to the kernel layer. And logging of traces as a tool for monitoring 
+the operation of a cyber-physical system is recommended by most safety standard 
+organizations. However, because the data can be overwhelmingly huge within a 
+short space of time, the use of models that do not rely only on known 
+signatures for online anomaly detection becomes difficult to use due to the 
+challenge of processing such enormous amount of data at runtime. Hence, the 
+resort to the use of signature-based tools by most practitioners. \par
+In this paper, we introduce an anomaly detection model that uses intra-trace 
+and inter-trace context vectors with stacked Long Short-Term Memory (LSTM) 
+networks to overcome the challenge of online anomaly detection in 
+cyber-physical systems. We test the performance of the model with publicly 
+available datasets that reflect both the application and kernel layer behavior 
+and our model demonstrates both effectiveness and robustness in detecting the 
+anomalous sequences.
+\end{abstract}
+
+\IEEEpeerreviewmaketitle
+\input{body}
+\bibliographystyle{IEEETran}
+\bibliography{bibfile}
+\end{document}
