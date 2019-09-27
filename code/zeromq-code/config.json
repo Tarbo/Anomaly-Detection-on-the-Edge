@@ -1,8 +1,0 @@
-{
-    "prim-ventilator-push-addr": "tcp://192.168.1.6:5556",
-    "sec-ventilator-pull-addr": "tcp://192.168.1.6:5557",
-    "sec-ventilator-push-addr": "tcp://192.168.1.6:5558",
-    "sink-pull-addr": "tcp://192.168.1.6:5559",
-    "mode": "attention",
-    "exp-name": "fifo"
-}
