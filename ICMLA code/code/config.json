@@ -1,0 +1,27 @@
+{
+    "batch-size": 32,
+    "train-test-split": 0.7,
+    "input-name": "input",
+    "target-name": "target",
+    "input-num-units": 256,
+    "output-num-units": 1,
+    "x-window": 5,
+    "y-window": 1,
+    "epochs": 200,
+    "model-optimizer": "adam",
+    "num-features": 1,
+    "exp-name": {
+        "normal": "normal.h5",
+        "delay": "delay.h5",
+        "random": "random.h5"
+    },
+    "model-weights": "rnn-model-attention-weights.h5",
+    "vocabs": "vocabs.json",
+    "embed-parameters": {
+        "epochs": 1000,
+        "context-window": 5,
+        "workers": 4,
+        "embed-size": 30,
+        "min-count": 1
+    }
+}

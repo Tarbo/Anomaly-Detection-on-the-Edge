@@ -1,0 +1,120 @@
+\documentclass[conference]{IEEEtran}
+%\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,latexsym}
+%\usepackage{algorithmic}
+%\graphicspath{{C:/Users/melli/OneDrive/UOITPhDResearch/anomaly-model-v4/images/}}
+\usepackage{textcomp}
+%\usepackage{graphics}
+\usepackage{xcolor}
+\usepackage[linesnumbered,commentsnumbered,boxed]{algorithm2e}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{subcaption}
+\usepackage[inline]{enumitem}
+\usepackage{enumerate}
+\usepackage{units}
+\usepackage{url}
+\usepackage{array}
+\usepackage{epstopdf}
+\usepackage{hhline}
+\usepackage[T1]{fontenc}
+%\usepackage[caption=false]{subfig}
+\renewcommand{\baselinestretch}{0.986}
+%\numberwithin{equation}{section}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\ifCLASSINFOpdf
+\usepackage[pdftex]{graphicx}
+% declare the path(s) where your graphic files are
+\graphicspath{{C:/Users/melli/OneDrive/UOITPhDResearch/anomaly-model-v4/images/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.svg,.jpg}
+\else
+% or other class option (dvipsone, dvipdf, if not using 
+%dvips). graphicx
+% will default to the driver specified in the system 
+%graphics.cfg if no
+% driver is specified.
+\usepackage[dvips]{graphicx}
+% declare the path(s) where your graphic files are
+\graphicspath{{../images/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+\DeclareGraphicsExtensions{.eps}
+\fi
+
+\begin{document}
+
+\title{A Deep Learning Approach to Distributed Anomaly 
+Detection for Edge Computing
+%\\
+%\thanks{this work is}
+}
+
+\author{\IEEEauthorblockN{
+		Okwudili M. Ezeme,
+		Qusay H. Mahmoud and
+		Akramul Azim
+}
+	\IEEEauthorblockA{
+		Department of Electrical, Computer and 
+	Software Engineering\\
+		Ontario Tech University\\
+		Oshawa, Ontario, Canada\\ 
+		Email: \{mellitus.ezeme, qusay.mahmoud, 
+		akramul.azim\}@ontariotechu.net
+	}}
+
+
+\maketitle
+
+\begin{abstract}
+One of the multiplier effects of the boom in mobile 
+technologies ranging from cell phones to computers and 
+wearables like smartwatches are that every public and private 
+common spaces are now dotted with Wi-Fi hotspots. These 
+hotspots provide the convenience of accessing the internet 
+on-the-go for either play or work. Also, with the increased 
+automation of our daily routines by our mobile devices via a 
+multitude of applications, our vulnerability to cyber fraud 
+or attacks becomes higher too. Hence, the need for heightened 
+security that is capable of detecting anomalies on-the-fly. 
+\par 
+However, these edge devices connected to the local area 
+network come with diverse capabilities with varying degrees 
+of limitations in compute and energy resources. Therefore, 
+running a process-based anomaly detector is not given a high 
+priority in these devices because; 
+\begin{enumerate*}[label={\alph*)},font={\bfseries}]
+	\item the primary functions of the applications running 
+	on the devices is not security; therefore, the device 
+	allocates much of its resources into satisfying the 
+	primary duty of the applications.
+	\item the volume and velocity of the data are high.
+\end{enumerate*}
+Therefore, in this paper, we introduce a multi-node (nodes 
+and devices are used interchangeably in the paper) ad-hoc 
+network that uses a novel offloading scheme to bring an 
+online anomaly detection capability on the kernel events to 
+the nodes in the network. We test the framework in a Wi-Fi 
+based ad-hoc network made up of several devices, and the 
+results confirm our hypothesis that the scheme can reduce 
+latency and increase the throughput of the anomaly detector, 
+thereby making online anomaly detection in the edge possible 
+without sacrificing the accuracy of the deep recurrent neural 
+network.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Anomaly Detection, Machine Learning, Distributed System, 
+Parallelism, Edge Devices
+\end{IEEEkeywords}
+
+\input{IoT-body}
+\bibliographystyle{IEEETran}
+\bibliography{IoT}
+\end{document}
