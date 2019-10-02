@@ -442,7 +442,7 @@ the following behavior of the ad-hoc network:
 	\label{fig:dataflow-model}
 \end{figure}
 We model the execution flow of Fig. \ref{fig:dataflow-model} 
-with a directed acyclic graph (DAG) $ \bm{G=(V,E,s_j)} 
+with a directed acyclic graph (DAG) $ \bm{G=(V,E,s_v)} 
 $ made up of a set of $ \bm{v} $ task segments $ {
 \bm{V=\{v_j|1\leq j\leq v\}}} $, a set of $ \bm{e} $ edges or 
 arcs 
@@ -463,9 +463,9 @@ without needing to restart the pair. Hence, we can scale up
 or down the number of concurrent \emph{predictors} or 
 \emph{detectors} at runtime so as to optimize the latency 
 reduction. Therefore, with the knowledge of the properties of 
-the graph $ \bm{G} $, the CPU capacity, $ \bm{\alpha_k} $ of 
-the node $ \bm{k} $, the 
-fraction of the CPU for anomaly detection, $ \bm{\beta_k} $ 
+the graph $ \bm{G} $, the CPU capacity, $ \bm{\alpha_n} $ of 
+the node $ \bm{n} $, the 
+fraction of the CPU for anomaly detection, $ \bm{\beta_n} $ 
 and 
 the capacity of the wireless channels, $ \bm{B} $, the 
 problem becomes finding the minimum task finish time of $ 
@@ -488,15 +488,15 @@ where a broadcast signal is used to query the peers and send
 parameter update. So, parameter update in this 
 instance only requires $ {\bm{((2\times n) + n)}} $ messages. 
 \par 
-Therefore, given the instruction count, $ \bm{s_j} $ of a 
+Therefore, given the instruction count, $ \bm{s_v} $ of a 
 task 
-segment, and CPU resource of the node $ \bm{\beta_k 
-\times \alpha_k} $, the compute time of task segments, ${ 
-\bm{V=\{v_j|1\leq j \leq v\}}} $ in a given node, $ \bm{k} $ 
+segment, and CPU resource of the node $ \bm{\beta_n 
+\times \alpha_n} $, the compute time of task segments, ${ 
+\bm{V=\{v_j|1\leq j \leq v\}}} $ in a given node, $ \bm{n} $ 
 is given in \eqref{eq:t-local}.
 \begin{equation}
-	\bm{t_{j}=\frac{m_j\times 
-	s_j}{\beta\times\alpha}\sum_{j\in 
+	\bm{t_{V_n}=\frac{m_{j}\times 
+	s_{j}}{\beta_n\times\alpha_n}\sum_{j\in 
 	V}m_j}
 	\label{eq:t-local}
 \end{equation}
@@ -509,27 +509,27 @@ $ \bm{x_{j,k}} $, then the latency is computed in
 
 \begin{equation}
 \begin{split}
-\bm{t_{(j,k)}} &= \bm{\min_{(j,k\in E)}( 2 
+\bm{t_{V_{E}}} &= \bm{\min_{(j,k\in V)}( 2 
 \times\frac{x_{j,k}\times|m_j-m_k|}{e_{j,k}}}\\
-	&\bm{+\frac{s_j\times|m_j-m_k|}{\beta\times\alpha}\sum_{j\in
-		V}m_j)}
+	&\bm{+\frac{s_j\times|m_j-m_k|}{\beta_n\times\alpha_n}\sum_{(j,k)\in
+		V}|m_j-m_k|)}
 \label{eq:latency}
 \end{split}
 \end{equation}
 From \eqref{eq:t-local} and \eqref{eq:latency}, we derive the 
-cost of processing a task as given in \eqref{eq:t-task} where 
-$ \bm{m_k=1} $ and $ \bm{m_j \in \{0,1\}} $. Since all the 
+cost of processing a task as given in \eqref{eq:latency-2} where 
+$ \bm{m_k=1} $, and $ \bm{m_j \in \{0,1\}} $. Since all the 
 peers share the same wireless bandwidth, then $ 
 {\bm{\sum_{(j,k\in E)}e_{j,k}|m_j-m_k|=B}} $ and $ 
 {\bm{e_{j,k}>0}} $ in \eqref{eq:latency}. Simplifying 
-\eqref{eq:latency} further, the cost of procesing a task in a 
+\eqref{eq:latency} further, the cost of processing a task in a 
 peer node becomes \eqref{eq:latency-2}
 \begin{equation}
 \begin{split}
-\bm{t_{(j,k)}} &= \bm{\min_{(j,k\in E)}( 2 
+\bm{t_{V_{E}}} &= \bm{\min_{(j,k\in E)}( 2 
 	\times |m_j-m_k|\times(\frac{x_{j,k}}{e_{j,k}}}\\
-&\bm{+\frac{s_j}{\beta\times\alpha}\sum_{j\in
-		V}m_j))}
+&\bm{+\frac{s_j}{\beta_n\times\alpha_n}\sum_{(j,k)\in
+		V}|m_j-m_k|))}
 \label{eq:latency-2}
 \end{split}
 \end{equation}
@@ -541,7 +541,7 @@ Finally, this minimization algorithm is solved by each
 node independently with the help of the network information 
 supplied by the access point node.
 \begin{equation}
-\bm{t_{T_p} = t_{j} + t_{(j,k)} } 
+\bm{t_{T_p} = t_{V_{n}} + t_{V_{E}} } 
 \label{eq:t-task}
 \end{equation}
 \subsection{Nodes (Devices)}
@@ -596,7 +596,7 @@ parameters (which includes the delay, processing time, queue
 size and node CPU load information) supplied by each node to 
 the access point node.
 \begin{equation}
-	\bm{t_{T_p}= t_j + \text{latency} }
+	\bm{t_{T_p} = t_{V_{n}} + \text{latency} }
 	\label{eq:t-task-2}
 \end{equation}
 Since node mobility in and out of the network is 

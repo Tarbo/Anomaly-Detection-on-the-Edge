@@ -131,7 +131,7 @@ R.~Bell, ``Introduction to iec 61508,'' in \emph{Proceedings of the 10th
   3--12.
 
 \bibitem{zeromq}
-P.~Hintjens, ``Zeromq: An open-source universal messaging library,''
+``Zeromq: An open-source universal messaging library,''
   \url{https://zeromq.org/}, accessed: 2019-09-26.
 
 \end{thebibliography}
