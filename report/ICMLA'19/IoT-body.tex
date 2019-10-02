@@ -446,7 +446,7 @@ with a directed acyclic graph (DAG) $ \bm{G=(V,E,s_v)}
 $ made up of a set of $ \bm{v} $ task segments $ {
 \bm{V=\{v_j|1\leq j\leq v\}}} $, a set of $ \bm{e} $ edges or 
 arcs 
-$ \bm{E=\{(j,k)|j,k \in V\}} $, and a set of instruction 
+$ \bm{E=\{(p,q)|p,q \in N\}} $, and a set of instruction 
 counter tag $ \bm{s_v} $ attached to every task segment 
 identifying the number of CPU instructions needed to execute 
 the task $ \bm{v} $. The task segments enjoy the benefit of 
@@ -463,14 +463,14 @@ without needing to restart the pair. Hence, we can scale up
 or down the number of concurrent \emph{predictors} or 
 \emph{detectors} at runtime so as to optimize the latency 
 reduction. Therefore, with the knowledge of the properties of 
-the graph $ \bm{G} $, the CPU capacity, $ \bm{\alpha_n} $ of 
+the graph $ \bm{G} $, the CPU capacity, $ \bm{\alpha} $ of 
 the node $ \bm{n} $, the 
-fraction of the CPU for anomaly detection, $ \bm{\beta_n} $ 
+fraction of the CPU for anomaly detection, $ \bm{\beta} $ 
 and 
 the capacity of the wireless channels, $ \bm{B} $, the 
 problem becomes finding the minimum task finish time of $ 
 \bm{v} $ task segments, ${ \bm{V=\{v_j|1\leq j \leq v\}}} $ 
-given a $ \bm{n} $ set of peer nodes ${ \bm{N=\{n_k|1 \leq k 
+given a $ \bm{n} $ set of peer nodes ${ \bm{N=\{n_p|1 \leq p 
 \leq n\}}} $. To get the peers parameters required for 
 computing the task finish time algorithm, the nodes 
 rely on the access point node to reduce the congestion 
@@ -490,58 +490,58 @@ instance only requires $ {\bm{((2\times n) + n)}} $ messages.
 \par 
 Therefore, given the instruction count, $ \bm{s_v} $ of a 
 task 
-segment, and CPU resource of the node $ \bm{\beta_n 
-\times \alpha_n} $, the compute time of task segments, ${ 
+segment, and CPU resource of the node $ \bm{\beta 
+\times \alpha} $, the compute time of task segments, ${ 
 \bm{V=\{v_j|1\leq j \leq v\}}} $ in a given node, $ \bm{n} $ 
 is given in \eqref{eq:t-local}.
 \begin{equation}
-	\bm{t_{V_n}=\frac{m_{j}\times 
-	s_{j}}{\beta_n\times\alpha_n}\sum_{j\in 
-	V}m_j}
+	\bm{t_{V_n}= \sum_{j\in 
+			V} \frac{v_{j}\times 
+	s_{v_j}}{\beta\times\alpha}}
 	\label{eq:t-local}
 \end{equation}
 In \eqref{eq:t-local}, $ \bm{j} $ denotes the 
 \emph{predictors} and \emph{detectors} of Fig. 
 \ref{fig:dataflow-model}. If the size of the task to be 
-transferred to another peer via the edge, $ \bm{e_{j,k}} $ is 
-$ \bm{x_{j,k}} $, then the latency is computed in 
+transferred to another peer via the edge, $ \bm{e_{n,m}} $ is 
+$ \bm{v_{n,m}} $, then the latency is computed in 
 \eqref{eq:latency}.
 
 \begin{equation}
 \begin{split}
-\bm{t_{V_{E}}} &= \bm{\min_{(j,k\in V)}( 2 
-\times\frac{x_{j,k}\times|m_j-m_k|}{e_{j,k}}}\\
-	&\bm{+\frac{s_j\times|m_j-m_k|}{\beta_n\times\alpha_n}\sum_{(j,k)\in
-		V}|m_j-m_k|)}
+\bm{t_{V_{n,m}}} &= \bm{\min_{(n,m\in N)}\left( 2 
+\times\frac{v_{n,m}\times|r_n-r_m|}{e_{n,m}}}\right.\\
+	& \left. \bm{+\sum_{j\in
+			V}\frac{s_{v_j}\times v_j\times|r_n-r_m|}{\beta\times\alpha}\right)}\\
+		& \text{where} \; \bm{\sum_{j\in V}v_j \equiv v_{n,m}}
 \label{eq:latency}
 \end{split}
 \end{equation}
 From \eqref{eq:t-local} and \eqref{eq:latency}, we derive the 
 cost of processing a task as given in \eqref{eq:latency-2} where 
-$ \bm{m_k=1} $, and $ \bm{m_j \in \{0,1\}} $. Since all the 
+$ \bm{r_m=1} $, and $ \bm{r_n \in \{0,1\}} $. Since all the 
 peers share the same wireless bandwidth, then $ 
-{\bm{\sum_{(j,k\in E)}e_{j,k}|m_j-m_k|=B}} $ and $ 
-{\bm{e_{j,k}>0}} $ in \eqref{eq:latency}. Simplifying 
-\eqref{eq:latency} further, the cost of processing a task in a 
+{\bm{\sum_{(n,m\in E)}e_{n,m}|r_n-r_m|=B}} $ and $ 
+{\bm{e_{n,m}>0}} $ in \eqref{eq:latency}. Also, in \eqref{eq:latency}, we assume the same data size for both the forward and backward transmission. Simplifying 
+\eqref{eq:latency} further, the cost of processing a task segment in a 
 peer node becomes \eqref{eq:latency-2}
 \begin{equation}
 \begin{split}
-\bm{t_{V_{E}}} &= \bm{\min_{(j,k\in E)}( 2 
-	\times |m_j-m_k|\times(\frac{x_{j,k}}{e_{j,k}}}\\
-&\bm{+\frac{s_j}{\beta_n\times\alpha_n}\sum_{(j,k)\in
-		V}|m_j-m_k|))}
+\bm{t_{V_{n,m}}} &= \bm{\min_{(n,m\in N)}\left(|r_n-r_m| \times \left( 2 
+	\times\frac{v_{n,m}}{e_{n,m}}}\right. \right.\\
+&\left. \left. \bm{+\sum_{j\in V}\frac{s_{v_j} \times v_j}{\beta\times\alpha}\right)}\right)
 \label{eq:latency-2}
 \end{split}
 \end{equation}
 
 Now, given tasks with latency requirements, $ \bm{t_{max}} $, 
 the problem reduces to minimizing \eqref{eq:t-task} such that 
-${ \bm{t_{T_p}^j\leq t_{max}^j, \; \forall j \in V }} $. 
+${ \bm{t^{v_j}\leq t_{max}^{v_j}, \; \forall j \in V }} $. 
 Finally, this minimization algorithm is solved by each 
 node independently with the help of the network information 
 supplied by the access point node.
 \begin{equation}
-\bm{t_{T_p} = t_{V_{n}} + t_{V_{E}} } 
+\bm{t_{V} = t_{V_{n}} + t_{V_{n,m}} } 
 \label{eq:t-task}
 \end{equation}
 \subsection{Nodes (Devices)}
@@ -553,7 +553,7 @@ types of applications. However, while some of the
 applications tolerate delay, some others are time-sensitive. 
 Hence, the size of the data that the processes $ 
 \bm{\{P_1,P_2,...,P_n\}} $ of 
-Fig. \ref{fig:agent} emits vary in size and time sensitivity. 
+Fig. \ref{fig:agent} emit vary in size and time sensitivity. 
 When kernel events of a process $ \bm{P} $ is fed to the 
 model of Fig. \ref{fig:agent} as data, a \emph{task} $ 
 \bm{T_{p}} $ is created and transferred to the task queue. To 
@@ -596,15 +596,15 @@ parameters (which includes the delay, processing time, queue
 size and node CPU load information) supplied by each node to 
 the access point node.
 \begin{equation}
-	\bm{t_{T_p} = t_{V_{n}} + \text{latency} }
+	\bm{t_{V} = t_{V_{n}} + \text{latency} }
 	\label{eq:t-task-2}
 \end{equation}
 Since node mobility in and out of the network is 
 common, and some tasks can be bursty, the task manager keeps 
 a routing table which is updated each time the access point 
-node sends the network parameters to avoid sending tasks to a 
+node sends the updated network parameters to all the active nodes. This regular update prevents the sending of tasks to a 
 stale node. The table maintains a cyclic ascending 
-latency times from active peer nodes as well as their 
+latency times from active peer nodes as well as the active peer 
 \emph{uuid}.
 \subsubsection{Handle Task}
 The task execution and offloading is determined by the 
